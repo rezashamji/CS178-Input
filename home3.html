@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Styling for user form, heading, title, logo-->
+    <style>
+        .form-box {
+            background-color: #c9e4f0; 
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px; 
+        }
+        .heading-underline {
+            width: 60px;
+            height: 2px;
+            background-color: #d1d1d1;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+        body {
+            background-color: #e9f3f7; 
+        }
+        .logo-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .logo-header img {
+            width: 50px;
+            margin-right: 10px; /* space between logo and text */
+        }
+        .logo-header .logo-text {
+            font-size: 24px; 
+            font-weight: bold;
+            color: #333; 
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-header">
+        <!--Since we are using Flask, images must be saved in a static folder and accessed using Jinja templating-->
+        <img src="{{ url_for('static', filename='img/doodle.png') }}" alt="Dog Logo">
+        <div class="logo-text">Doodle Dogs</div>
+    </div>
+    <!--Simple form created using Bootstrap notation where user inputs their name and selects timezone from dropdown-->
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <div class="form-box">
+                <div class="text-center">
+                    <h3 class="heading">Enter Your Information!</h3>
+                    <div class="heading-underline"></div>
+                </div>
+                <form action="/" method="post" class="needs-validation">
+                    <p>Name</p>
+                    <div class="form-group">
+                        <input class="form-control" id="inputName" name="name" placeholder="Enter your name here" required>
+                        <div class="invalid-feedback">Please enter your name</div>
+                    </div>
+                    <p>Time Zone</p>
+                    <div class="form-group">
+                        <select class="form-control" name="time_zone">
+                            <option>EST</option>
+                            <option>PST</option>
+                        </select>
+                    </div>
+                    <br>
+                    <!--Clicking this submit button will trigger the redirect to the schedule page-->
+                    <button class="btn btn-secondary" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

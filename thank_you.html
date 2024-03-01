@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Thank You</title>
+    <style>
+        body {
+            font-family: 'Lato', sans-serif; /* Updated to Lato for consistency */
+            margin: 0;
+            padding: 40px;
+            background: #e9f3f7; /* Light blue background for consistency */
+            color: #333;
+            text-align: center;
+        }
+        .logo-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .logo-header img {
+            width: 50px; /* Adjust logo size as needed */
+            margin-right: 10px; /* Space between logo and text */
+        }
+        .logo-header .logo-text {
+            font-size: 24px; /* Adjust text size as needed */
+            font-weight: bold;
+            color: #333; /* Adjust text color as needed */
+        }
+        h1, h2 {
+            color: #333; /* More neutral color for text */
+            margin-bottom: 0.5em;
+        }
+        h1 {
+            font-weight: 700;
+        }
+        h2 {
+            font-weight: 400;
+            margin-bottom: 1em;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            display: inline-block;
+            text-align: left;
+        }
+        li {
+            background-color: #fff;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-weight: 400; /* Lighter font for readability */
+        }
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff; /* Updated to match the instructions button color */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-header">
+        <img src="img/doodle.png" alt="Dog Logo">
+        <div class="logo-text">Doodle Dogs</div>
+    </div>
+    <h1>Thank you so much!</h1>
+    <h2>Your most preferred times are:</h2>
+    <ul id="preferredTimesList"></ul>
+    <a href="/" class="button">Return Home</a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve the preferred time slots from localStorage
+            var preferredSlots = JSON.parse(localStorage.getItem('preferredTimeSlots')) || [];
+
+            // Generate list items for each preferred time slot
+            var listHtml = preferredSlots.map(function(slot) {
+                var startTime = new Date(slot.start).toLocaleString();
+                var endTime = new Date(slot.end).toLocaleString();
+                return '<li>' + startTime + ' to ' + endTime + '</li>';
+            }).join('');
+
+            // Display the preferred times
+            document.getElementById('preferredTimesList').innerHTML = listHtml;
+
+            // Optionally clear localStorage if it's no longer needed
+            localStorage.removeItem('preferredTimeSlots');
+        });
+    </script>
+</body>
+</html>
